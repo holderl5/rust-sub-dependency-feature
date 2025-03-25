@@ -3,6 +3,8 @@ https://stackoverflow.com/questions/79532617/can-i-enable-rust-features-on-sub-s
 
 Working with kmdreko on stackoverflow, I discovered age is using an old version of getrandom that does not support the target arch.  I cannot now easily use this project to answer the problem of what to do when we have multiple versions in the tree as moving age to the latest version would unify all of the versions.
 
+PREVIOUSLY:
+
 Simple project to explore a dependency issue with getrandom when compiling for wasm32-unknown-unknown.  All keys and data in this repo are strictly for testing purposes.  
 
 The issue is that getrandom is a dependency about 5 levels deep for age, but fails to build due to the wasm_js feature not being present at build time.
