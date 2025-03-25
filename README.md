@@ -35,6 +35,7 @@ But fails with the following:
 ```
 $ RUSTFLAGS='--cfg getrandom_backend="wasm_js"' cargo build --target wasm32-unknown-unknown
 ```
-2. Next, add a direct dependency (dcc4d35297968a8dcf2d4b7b2dd84499c10f2640), no change
+2. Add a direct dependency (dcc4d35297968a8dcf2d4b7b2dd84499c10f2640), no change
+3. Move age to a separate dependencies section, add a feature specification for getrandom there, no change
 
 
