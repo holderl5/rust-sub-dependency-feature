@@ -13,6 +13,7 @@ There is a docker container for local development so you need not install rust l
 docker build  -t cf-rust .
 ```
 ### Run Image
+Run this command in your cloned repo at the root level
 ```
 docker run --rm -it -p 127.0.0.1:8787:8787 -v .:/home/developer/app -w /home/developer/app --name cf-rust cf-rust
 ```
