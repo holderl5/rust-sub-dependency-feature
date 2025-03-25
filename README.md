@@ -4,8 +4,10 @@ Simple project to explore a dependency issue with getrandom when compiling for w
 The issue is that getrandom is a dependency about 5 levels deep for age, but fails to build due to the wasm_js feature not being present at build time.
 
 ## Local development in docker
-There is a docker container for local development so you need not install rust locally.  wasm32-unknown-unknown is not currently in the docker build, it will need to be added with rustup.
-
+There is a docker container for local development so you need not install rust locally.  wasm32-unknown-unknown is not currently in the docker build, it will need to be added with 
+```
+rustup target add wasm32-unknown-unknown
+```
 
 
 ### Build Image
