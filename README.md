@@ -1,13 +1,9 @@
 # Dependencies Issue
+Simple project to show how you can set feature flags for sub-sub dependencies, even when you have multiple versions of a library with different feature flag names.  The idea behind this project should be relevant for some time.  The actual demo will break at some point when the lib that uses getrandom 0.2.15 finally updates.
+
+From here:
 https://stackoverflow.com/questions/79532617/can-i-enable-rust-features-on-sub-sub-sub-dependencies-especially-when-the-depe
 
-Working with kmdreko on stackoverflow, I discovered age is using an old version of getrandom that does not support the target arch.  I cannot now easily use this project to answer the problem of what to do when we have multiple versions in the tree as moving age to the latest version would unify all of the versions.
-
-PREVIOUSLY:
-
-Simple project to explore a dependency issue with getrandom when compiling for wasm32-unknown-unknown.  All keys and data in this repo are strictly for testing purposes.  
-
-The issue is that getrandom is a dependency about 5 levels deep for age, but fails to build due to the wasm_js feature not being present at build time.
 
 ## Local development in docker
 There is a docker container for local development so you need not install rust locally.  wasm32-unknown-unknown is not currently in the docker build, it will need to be added with 
@@ -43,5 +39,12 @@ $ RUSTFLAGS='--cfg getrandom_backend="wasm_js"' cargo build --target wasm32-unkn
 ```
 2. Add a direct dependency (dcc4d35297968a8dcf2d4b7b2dd84499c10f2640), no change
 3. Move age to a separate dependencies section (d1b95c7b5d0e83acf29bee90f3f836ac335fd058), add a feature specification for getrandom there, no change
+4. Per discussion with kmdreko on stackoverflow (a1197e6a2564cf1eaf5804c7eb0221bdaeebf7f0), add configs for each version of getrandom
+```
+age = {version = "0.11.1", features = ["armor"] }
+getrandom02 = { package = "getrandom", version = "0.2.15", features = ["js"] }
+getrandom03 = { package = "getrandom", version = "0.3.2", features = ["wasm_js"] }
+```
+I also added UUID library so you can see the two different versions
 
 
